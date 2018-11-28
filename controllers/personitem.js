@@ -132,7 +132,8 @@ class PersonItemController{
                    // "Quantity": { $sum: "$Quantity" },           
                     items: { "$push": { 
                         "Item": "$Item",
-                        "Quantity": { $sum: "$Quantity" }
+                        "Quantity": "$Quantity" ,
+                        "Totalprice": "$Totalprice" ,
                     } }
                     // items: {  $push: "$$ROOT" 
                     // } 
