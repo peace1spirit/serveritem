@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Person Data</title>
+</head>
+
+<body>
+    <h1 class="text-center">Data</h1>
+    <div class="col-md-6 offset-md-3">
+       
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i<data.length; i++){ %>
+                    <tr>
+                        <td>
+                            <%= i+1 %>
+                        </td>
+                        <td>
+                            <%=data[i].ID %>
+                        </td>
+                        <td>
+                            <%=data[i].Firstname + ' ' + data[i].Lastname%>
+                        </td>
+                        <td>
+                            <%=data[i].Email %>
+                        </td>
+                        <td>
+                            <%=data[i].Item %>
+                        </td>
+                        <td>    
+                            <%=data[i].Quantity %>
+                        </td>
+                        <td>    
+                            <%=data[i].Totalprice %>
+                        </td>
+                    </tr>
+                    <%  }%>
+            </tbody>
+        </table>
+        <p class="text-left">
+        <a href="/pivot">Pivot</a>
+    </p>
+    </div>
+</body>
+
+</html>
