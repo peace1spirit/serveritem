@@ -4,11 +4,22 @@ $ npm i nodemon
 $ npm i
 $ npm start (server side)
 
+
+###create file .env with template
+token={access-token}
+
 ### Using Mongodb 
 ### List of API  
+##### http://localhost:3000/
+
+
+| Route | HTTP | Description                 |
+| ----- | ---- | --------------------------- |
+| /feed | GET  | Get Feeds from API Facebook |
+
 
 #### Input table 
-##### http://localhost:3000/
+
 
 | Route | HTTP | Description                    |
 | ----- | ---- | ------------------------------ |
