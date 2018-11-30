@@ -11,19 +11,18 @@
 </head>
 
 <body>
-    <h1 class="text-center">Data Table</h1>
+    <h1 class="text-center">Data Pivot</h1>
     <div class="col-md-6 offset-md-3">
        
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">ID</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total Price</th>
+                    <% for (let i = 0; i< cols.length; i++){ %>
+                        <th scope="col"><%= cols[i] %></th>
+                    <% }%>
                 </tr>
             </thead>
             <tbody>
@@ -33,29 +32,22 @@
                             <%= i+1 %>
                         </td>
                         <td>
-                            <%=data[i].ID %>
+                            <%=data[i]._id.Firstname + ' ' + data[i]._id.Lastname%>
                         </td>
                         <td>
-                            <%=data[i].Firstname + ' ' + data[i].Lastname%>
+                            <%=data[i]._id.Email %>
                         </td>
-                        <td>
-                            <%=data[i].Email %>
-                        </td>
-                        <td>
-                            <%=data[i].Item %>
-                        </td>
-                        <td>    
-                            <%=data[i].Quantity %>
-                        </td>
-                        <td>    
-                            <%=data[i].Totalprice %>
-                        </td>
+                        <% for (let j = 0; j< data[i].rows.length; j++){ %>
+                            <td>
+                                <%=data[i].rows[j].Quantity %>
+                            </td>
+                        <% }%>
                     </tr>
                     <%  }%>
             </tbody>
         </table>
         <p class="text-left">
-        <a href="/pivot">Pivot</a>
+        <a href="/">Back</a>
     </p>
     </div>
 </body>

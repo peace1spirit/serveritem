@@ -19,8 +19,6 @@ class FacebookFeed{
             })
         })
     }
-    
-
 }
 
 module.exports=FacebookFeed;

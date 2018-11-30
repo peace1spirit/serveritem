@@ -4,9 +4,11 @@ $ npm i nodemon
 $ npm i
 $ npm start (server side)
 
+##please get your access-token from facebook 
+###create file .env with template:
+##token=access-token 
+##e.g  token=1234567890
 
-###create file .env with template
-token={access-token}
 
 ### Using Mongodb 
 ### List of API  
@@ -44,7 +46,7 @@ token={access-token}
 | ----- | ---- | ------------------------- |
 | /     | GET  | Show data Person and Item |
 
-#####  Show Data
+#####  Show Data via HTML ejs
 | Route  | HTTP | Description               |
 | ------ | ---- | ------------------------- |
 | /pivot | GET  | Show data Person and Item |

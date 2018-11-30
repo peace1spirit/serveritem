@@ -128,29 +128,63 @@ class PersonItemController{
                         "Email": "$Email",
                         "Firstname": "$Firstname",
                         "Lastname": "$Lastname",
-                    },                    
-                   // "Quantity": { $sum: "$Quantity" },           
+                        "Item": "$Item"
+                    },               
+                    "Quantity": { $sum: "$Quantity" },
+                    "Totalprice":{ $sum: "$Totalprice" },        
+                },              
+            },
+            {$group: {
+                    "_id": {
+                        "Email": "$_id.Email",
+                        "Firstname": "$_id.Firstname",
+                        "Lastname": "$_id.Lastname",
+                    },                          
                     items: { "$push": { 
-                        "Item": "$Item",
+                        "Item": "$_id.Item",
                         "Quantity": "$Quantity" ,
                         "Totalprice": "$Totalprice" ,
                     } }
-                    // items: {  $push: "$$ROOT" 
-                    // } 
-                },
-
+                }
             }
+            
         ])
-        
-        //PersonItemModel.find({})
         .then(result=>{
-            res.status(200).json({data:result}) 
+            var tempItems=[]
+            for (let i = 0; i < result.length; i++) {
+                for (let j = 0; j < result[i].items.length; j++) {
+                    if(tempItems.indexOf(result[i].items[j].Item)==-1){
+                        tempItems.push(result[i].items[j].Item)
+                    }
+                }
+            }
+            for (let i = 0; i < result.length; i++) {
+                let tempRow=[]
+                for (let k = 0; k < tempItems.length; k++) {
+                    let index=-1
+                    for (let u = 0; u <  result[i].items.length; u++) {
+                        if(tempItems[k]==result[i].items[u].Item){
+                            index=u
+                            break
+                        }                      
+                    }
+                    if(index==-1){
+                        tempRow.push({ Item: tempItems[k] , Quantity: 0 })
+                    }else{
+                        tempRow.push({ Item: tempItems[k] , Quantity: result[i].items[index].Quantity })
+                    }
+                }
+                result[i].rows=tempRow
+            }
+            //console.log(tempItems)
+            //tempItems.unshift("Full Name", "Email");
+            //res.status(200).json({data:result , cols: tempItems })
+            res.render('tablePivot', {data:result , cols: tempItems })   
         })
         .catch(err=>{
             res.status(500).json({ message: err.message})
         })            
     }
-
 }
 
 module.exports=PersonItemController;
